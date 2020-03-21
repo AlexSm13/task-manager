@@ -1,1 +1,21 @@
-<p>task-list works!</p>
+<h3 mat-subheader>Task manager</h3>
+<div class="button-block">
+  <button mat-raised-button color="primary" (click)="create()">Create task</button>
+</div>
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let task of tasks">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{task.title}}
+      </mat-panel-title>
+      <mat-panel-description>
+        Выполнить до: {{task.dueDate | date}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>Описание: {{task.description}}</p>
+    <mat-action-row>
+      <button mat-button (click)="edit(task)">EDIT</button>
+      <button mat-button (click)="deleted(task.id)">DELETED</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
