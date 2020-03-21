@@ -10,6 +10,11 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
 import { TaskItemComponent } from './task-list/task-item/task-item.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {FormsModule} from '@angular/forms';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -25,6 +30,11 @@ import { TaskItemComponent } from './task-list/task-item/task-item.component';
     MatExpansionModule,
     MatButtonModule,
     MatListModule,
+    MatInputModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
