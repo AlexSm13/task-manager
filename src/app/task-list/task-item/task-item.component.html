@@ -1,0 +1,15 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header [class.fire]="fire" [class.expire]="expire">
+    <mat-panel-title>
+      {{task.title}}
+    </mat-panel-title>
+    <mat-panel-description>
+      Выполнить до: {{task.dueDate | date}}
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <p>Описание: {{task.description}}</p>
+  <mat-action-row>
+    <button mat-button (click)="edit(task)">EDIT</button>
+    <button mat-button (click)="deleted(task.id)">DELETED</button>
+  </mat-action-row>
+</mat-expansion-panel>

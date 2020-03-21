@@ -9,12 +9,14 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
+import { TaskItemComponent } from './task-list/task-item/task-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskListComponent,
-    EditTaskComponent
+    EditTaskComponent,
+    TaskItemComponent
   ],
   imports: [
     BrowserModule,
