@@ -1,8 +1,8 @@
 <h3 mat-subheader>Task manager</h3>
 <div class="button-block">
-  <button mat-raised-button color="primary" (click)="create()">Create task</button>
+  <button mat-raised-button color="primary" appOpenDialog [name]="'Create'" (closeDialog)="loadTask()">Create task</button>
 </div>
-<div class="box-list" cdkDropList (cdkDropListDropped)="drop($event)">
+<div cdkDropList (cdkDropListDropped)="drop($event)">
   <mat-accordion>
     <ng-container *ngFor="let task of tasks">
       <app-task-item [task]="task" (action)="loadTask()" cdkDrag></app-task-item>

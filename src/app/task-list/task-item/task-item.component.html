@@ -9,7 +9,7 @@
   </mat-expansion-panel-header>
   <p>Описание: {{task.description}}</p>
   <mat-action-row>
-    <button mat-button (click)="edit(task)">EDIT</button>
+    <button mat-button appOpenDialog [name]="'Edit'" [task]="task" (closeDialog)="closeDialog()">EDIT</button>
     <button mat-button (click)="deleted(task.id)">DELETED</button>
   </mat-action-row>
 </mat-expansion-panel>

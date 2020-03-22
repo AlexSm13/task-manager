@@ -13,16 +13,18 @@ import { TaskItemComponent } from './task-list/task-item/task-item.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { OpenDialogDirective } from './directive/open-dialog.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskListComponent,
     EditTaskComponent,
-    TaskItemComponent
+    TaskItemComponent,
+    OpenDialogDirective
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatDatepickerModule,
     MatNativeDateModule,
     FormsModule,
-    DragDropModule
+    ReactiveFormsModule,
+    DragDropModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
