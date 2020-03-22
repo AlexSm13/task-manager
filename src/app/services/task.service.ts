@@ -23,4 +23,8 @@ export class TaskService extends AbstractService {
   deleteTask(id: number): Observable<boolean> {
     return this.delete(id);
   }
+
+  changePosition(tasks: Task[]) {
+    return this.postAll(tasks);
+  }
 }

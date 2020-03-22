@@ -33,6 +33,13 @@ export class AbstractService {
     return of(true);
   }
 
+  protected postAll(tasks) {
+
+    this.saveElements(tasks);
+
+    return of(true);
+  }
+
   protected put(updateTask) {
 
     let tasks = this.getElements();

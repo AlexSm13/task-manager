@@ -3,6 +3,7 @@ import {TaskService} from '../services/task.service';
 import {Task} from '../models/task.model';
 import {MatDialog} from '@angular/material/dialog';
 import {EditTaskComponent} from '../edit-task/edit-task.component';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-task-list',
@@ -49,5 +50,10 @@ export class TaskListComponent implements OnInit {
   create() {
     this.name = 'Create';
     this.openDialog(new Task());
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
+    this.taskService.changePosition(this.tasks);
   }
 }

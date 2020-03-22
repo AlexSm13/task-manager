@@ -15,6 +15,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {FormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule,
     FormsModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
