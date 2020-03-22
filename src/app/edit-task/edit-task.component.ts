@@ -12,6 +12,7 @@ export class EditTaskComponent implements OnInit, OnDestroy {
 
   componentRef: ComponentRef<any>;
   public taskForm: FormGroup;
+  isShow = false;
 
   constructor(
     private taskService: TaskService,
@@ -24,6 +25,7 @@ export class EditTaskComponent implements OnInit, OnDestroy {
   });
 
   ngOnInit() {
+    this.isShow = this.data.name === 'Show';
     this.taskForm = new FormGroup({
       title: new FormControl(this.data.task.title ? this.data.task.title : '', [Validators.required]),
       dueDate: new FormControl(this.data.task.dueDate ? this.data.task.dueDate : new Date()),

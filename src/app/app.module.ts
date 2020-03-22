@@ -17,6 +17,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { OpenDialogDirective } from './directive/open-dialog.directive';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { OpenDialogDirective } from './directive/open-dialog.directive';
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

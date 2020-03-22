@@ -1,22 +1,22 @@
 <h1 mat-dialog-title>{{data.name}} task</h1>
 <mat-dialog-content [formGroup]="taskForm">
   <mat-form-field class="full-width">
-    <input matInput type="text" placeholder="Title" formControlName="title" id="title">
+    <input matInput type="text" placeholder="Title" formControlName="title" id="title" [readonly]="isShow">
     <mat-error *ngIf="hasError('title', 'required')">Title is required</mat-error>
   </mat-form-field>
   <mat-form-field class="full-width">
-    <textarea matInput type="text" placeholder="Description" formControlName="description" id="description"></textarea>
+    <textarea matInput type="text" placeholder="Description" formControlName="description" id="description" [readonly]="isShow"></textarea>
     <mat-error *ngIf="hasError('description', 'required')">Title is required</mat-error>
   </mat-form-field>
   <mat-form-field class="full-width">
     <input matInput [matDatepicker]="dueDate" placeholder="Due Date" formControlName="dueDate" id="dueDate"
-           readonly (click)="dueDate.open()">
-    <mat-datepicker-toggle matSuffix [for]="dueDate"></mat-datepicker-toggle>
-    <mat-datepicker #dueDate></mat-datepicker>
+           readonly (click)="dueDate.open()" [readonly]="isShow">
+    <mat-datepicker-toggle matSuffix [for]="dueDate" [disabled]="isShow"></mat-datepicker-toggle>
+    <mat-datepicker #dueDate [disabled]="isShow"></mat-datepicker>
   </mat-form-field>
 </mat-dialog-content>
 
 <mat-dialog-actions class="button-block">
   <button class="mat-raised-button" (click)="onCancel()">Close</button>
-  <button class="mat-raised-button mat-primary" [disabled]="!taskForm.valid" (click)="save(taskForm.value)">Save</button>
+  <button class="mat-raised-button mat-primary" *ngIf="!isShow" [disabled]="!taskForm.valid" (click)="save(taskForm.value)">Save</button>
 </mat-dialog-actions>
