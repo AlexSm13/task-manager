@@ -18,6 +18,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { OpenDialogDirective } from './directive/open-dialog.directive';
 import {MatCardModule} from '@angular/material/card';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {MatCardModule} from '@angular/material/card';
     ReactiveFormsModule,
     DragDropModule,
     MatCardModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

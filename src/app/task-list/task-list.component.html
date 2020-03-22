@@ -6,7 +6,12 @@
 <ng-container [ngSwitch]="state">
   <ng-container *ngSwitchCase="'empty'" [ngTemplateOutlet]="emptyTemplate"></ng-container>
   <ng-container *ngSwitchCase="'tasks'" [ngTemplateOutlet]="tasksTemplate"></ng-container>
+  <ng-container *ngSwitchCase="'load'" [ngTemplateOutlet]="loadTemplate"></ng-container>
 </ng-container>
+
+<ng-template #loadTemplate>
+  <mat-spinner></mat-spinner>
+</ng-template>
 
 <ng-template #emptyTemplate>
   <mat-card>Empty task list</mat-card>

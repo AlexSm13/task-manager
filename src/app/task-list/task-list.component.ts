@@ -11,12 +11,12 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 export class TaskListComponent implements OnInit {
 
   tasks: Task[] = [];
-  state: 'empty' | 'tasks' = 'empty';
+  state: 'empty' | 'tasks' | 'load' = 'load';
 
   constructor(private taskService: TaskService) { }
 
   loadTask = (() => {
-
+    this.state = 'load';
     this.taskService.getTasks().subscribe(res => {
       if (res.length) {
         this.state = 'tasks';
@@ -24,6 +24,8 @@ export class TaskListComponent implements OnInit {
       } else {
         this.state = 'empty';
       }
+    }, error => {
+      console.log('something was wrong', error);
     });
   });
 
