@@ -2,6 +2,8 @@ import { OnInit, OnDestroy, Component, Inject, ComponentRef } from '@angular/cor
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {TaskService} from '../services/task.service';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-task',
@@ -9,6 +11,8 @@ import {TaskService} from '../services/task.service';
   styleUrls: ['./edit-task.component.less']
 })
 export class EditTaskComponent implements OnInit, OnDestroy {
+
+  unSubscriber$: Subject<any> = new Subject();
 
   componentRef: ComponentRef<any>;
   public taskForm: FormGroup;
@@ -39,11 +43,11 @@ export class EditTaskComponent implements OnInit, OnDestroy {
 
   public save(taskFormValue) {
     if (this.taskForm.valid) {
-      this.executeOwnerCreation(taskFormValue);
+      this.executeSaveTask(taskFormValue);
     }
   }
 
-  private executeOwnerCreation(taskFormValue) {
+  private executeSaveTask(taskFormValue) {
     const task = {
       id: this.data.task.id || null,
       title: taskFormValue.title,
@@ -54,12 +58,14 @@ export class EditTaskComponent implements OnInit, OnDestroy {
 
     const obs = this.data.task.id ? this.taskService.updateTask(task) : this.taskService.saveTask(task);
 
-    obs.subscribe(res => {
+    obs.pipe(takeUntil(this.unSubscriber$)).subscribe(res => {
       this.dialogRef.close(res);
     });
   }
 
   ngOnDestroy() {
+    this.unSubscriber$.next();
+    this.unSubscriber$.complete();
     if (this.componentRef) {
       this.componentRef.destroy();
     }

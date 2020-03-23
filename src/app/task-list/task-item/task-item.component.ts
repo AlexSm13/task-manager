@@ -1,13 +1,17 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {Task} from '../../models/task.model';
 import {TaskService} from '../../services/task.service';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-task-item',
   templateUrl: './task-item.component.html',
   styleUrls: ['./task-item.component.less']
 })
-export class TaskItemComponent implements OnInit {
+export class TaskItemComponent implements OnInit, OnDestroy {
+
+  unSubscriber$: Subject<any> = new Subject();
 
   @Input() task: Task;
   @Output() action = new EventEmitter();
@@ -29,10 +33,15 @@ export class TaskItemComponent implements OnInit {
   }
 
   deleted(id) {
-    this.taskService.deleteTask(id).subscribe(res => {
+    this.taskService.deleteTask(id).pipe(takeUntil(this.unSubscriber$)).subscribe(res => {
       if (res) {
         this.action.emit();
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.unSubscriber$.next();
+    this.unSubscriber$.complete();
   }
 }
