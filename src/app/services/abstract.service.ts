@@ -26,7 +26,7 @@ export class AbstractService {
   protected post(newTask) {
 
     const tasks = this.getElements();
-    newTask.id = tasks.length + 1;
+    newTask.id = tasks.length ? tasks.reduce((task, current) => task.id > current.id ? task : current).id + 1 : 1;
     tasks.push(newTask);
     this.saveElements(tasks);
 

@@ -16,16 +16,27 @@ export class TaskItemComponent implements OnInit, OnDestroy {
   @Input() task: Task;
   @Output() action = new EventEmitter();
 
-  fire: boolean;
-  expire: boolean;
+  private readonly DUE_COLOR = '#00BFFF';
+  private readonly ERROR_COLOR = '#FF0000';
+  color: string;
 
   constructor(private taskService: TaskService) { }
 
   ngOnInit(): void {
 
     const dueDate = new Date(this.task.dueDate);
-    this.fire = dueDate.getTime() <= new Date().setDate(new Date().getDate() + 3);
-    this.expire = dueDate < new Date();
+    const newDate = new Date();
+
+    const diffDate = dueDate - newDate;
+    const threeDay = 3 * 24 * 60 * 60 * 1000;
+
+    if (diffDate > 0 && diffDate <= threeDay) {
+      this.color = this.DUE_COLOR;
+    }
+
+    if (diffDate < 0) {
+      this.color = this.ERROR_COLOR;
+    }
   }
 
   closeDialog() {

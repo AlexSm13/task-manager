@@ -6,7 +6,7 @@
   </mat-form-field>
   <mat-form-field class="full-width">
     <textarea matInput type="text" placeholder="Description" formControlName="description" id="description" [readonly]="isShow"></textarea>
-    <mat-error *ngIf="hasError('description', 'required')">Title is required</mat-error>
+    <mat-error *ngIf="hasError('description', 'required')">Description is required</mat-error>
   </mat-form-field>
   <mat-form-field class="full-width">
     <input matInput [matDatepicker]="dueDate" placeholder="Due Date" formControlName="dueDate" id="dueDate"

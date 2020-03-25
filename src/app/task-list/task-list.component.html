@@ -22,7 +22,7 @@
   <div cdkDropList (cdkDropListDropped)="drop($event)">
     <mat-accordion>
       <ng-container *ngFor="let task of tasks">
-        <app-task-item [task]="task" (action)="loadTask()" cdkDrag></app-task-item>
+        <app-task-item [task]="task" (action)="loadTask()"></app-task-item>
       </ng-container>
     </mat-accordion>
   </div>
